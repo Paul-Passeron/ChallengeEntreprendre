@@ -8,6 +8,15 @@
       href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
+    <ul class="no-list-style horizontal-list text-center nav-menu">
+      <li>
+        <a href = "{{ url_for('index') }}">Acceuil</a>
+      </li>
+      <li>
+        <a href="{{ url_for('mds') }}">Mon Dossier Santé</a>
+      </li>
+    </ul>
+  </nav>
     <h1>Bienvenue sur Medica</h1>
     <main>
       {% with messages = get_flashed_messages(with_categories=true) %}

@@ -17,10 +17,12 @@ def valid_login(user, passwr):
       return True
   return False
   
+current_username = None
 
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+  global current_username
   fallback = render_template('login.html')
   if request.method != 'POST':
     return fallback
@@ -29,13 +31,16 @@ def login():
   couldCounnect = valid_login(usr, psw)
   if not couldCounnect:
     return fallback
-  return render_template('account.html', person=usr)
+  current_username = usr
+  return redirect(url_for('account'))
   
 
+@app.route('/dossier_sante')
+def mds():
+  return render_template('dossier_sante.html')
 
 @app.route('/account/')
-@app.route('/account/<name>')
-def account(name=None):
-  if name is None:
+def account():
+  if current_username is None:
     return redirect(url_for('login'))
-  return render_template('account.html', person=name)
+  return render_template('account.html', person=current_username)

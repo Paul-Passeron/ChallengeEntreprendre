@@ -16,8 +16,10 @@ body {
     min-height: 100vh;
 }
 
-h1, h2 {
-    color: #4CAF50; /* Couleur verte pour les titres */
+h1,
+h2 {
+    color: #4CAF50;
+    /* Couleur verte pour les titres */
     text-align: center;
 }
 
@@ -52,7 +54,8 @@ footer {
 }
 
 /* Liens et boutons */
-button, .btn-link {
+button,
+.btn-link {
     display: inline-block;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -65,7 +68,8 @@ button, .btn-link {
     text-decoration: none;
 }
 
-button:hover, .btn-link:hover {
+button:hover,
+.btn-link:hover {
     background-color: #45a049;
 }
 
