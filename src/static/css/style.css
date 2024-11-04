@@ -191,6 +191,8 @@ form button:hover {
 .nav-bar a {
     color: white;
     padding: 15px 20px;
+    font-size: 1.5em;
+    font-weight: 700;
     text-decoration: none;
     text-align: center;
 }

@@ -66,6 +66,8 @@ def login():
 
 @app.route('/dossier_sante')
 def mds():
+  if current_user is None:
+    return redirect(url_for('login'))
   return render_template('dossier_sante.html')
 
 @app.route('/account')
