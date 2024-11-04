@@ -168,7 +168,16 @@ form button:hover {
 }
 
 .top-bar .site-name {
-    font-size: 1.5em;
+    font-size: 2em;
+    font-weight: 800;
+    margin-right: 20px;
+}
+
+
+.top-bar .user-name {
+    font-size: 1.0em;
+    font-weight: 800;
+    text-decoration: underline;
     margin-right: 20px;
 }
 

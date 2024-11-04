@@ -25,6 +25,11 @@ class User:
   
   def getPassword(self):
     return self.password
+  
+  def getPrintedName(self):
+    return self.getFirstName() + " " + self.getName()
+    
+    
 
 
 paulp = User("paul.passeron@ensiie.eu", "Paul", "Passeron", "123456")
@@ -67,8 +72,7 @@ def mds():
 def account():
   if current_user is None:
     return redirect(url_for('login'))
-  printedName = current_user.getFirstName() + " " + current_user.getName()
-  return render_template('account.html', person=printedName)
+  return render_template('account.html', person=current_user.getPrintedName())
 
 
 @app.route('/signup', methods=['POST', 'GET'])
@@ -80,11 +84,14 @@ def signup():
   # TODO
   
     
+def getName():
+  if current_user is None: return None
+  return current_user.getPrintedName()
 
 
 def is_connected():
   return not (current_user is None)
 
 @app.context_processor
-def inject_is_connected():
-  return dict(is_connected=is_connected)
+def inject_context():
+  return dict(is_connected=is_connected, getName=getName)

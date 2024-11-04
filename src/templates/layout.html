@@ -18,9 +18,10 @@
           <button
             onclick="window.location.href = '{{ url_for('login') }}' ; ">Se
             connecter</button>
-
           <button>S'inscrire</button>
         </div>
+        {% else %}
+        <div class="user-name">{{ getName() }}</div>
         {% endif %}
       </div>
       <nav class="nav-bar">
