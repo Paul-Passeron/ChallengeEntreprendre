@@ -55,5 +55,6 @@ Le modèle économique de cette application repose sur plusieurs axes :
 2. Facturation aux professionnels de santé pour l'accès au dossier médical numérique et l'intégration des ordonnances
 3. Partenariats avec les pharmacies et fournisseurs de dispositifs médicaux connectés
 4. Monétisation des données anonymisées (avec l'accord des utilisateurs) pour la recherche médicale
+5. Partenariat avec Doctolib
 
 L'objectif est de proposer une solution de gestion médicale complète et accessible, tout en générant des revenus récurrents grâce à un modèle d'abonnement et de partenariats avec les acteurs du secteur de la santé.
