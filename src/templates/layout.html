@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medica - Gestion de santé</title>
-    <link rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}">
-  </head>
-  <body>
-    <ul class="no-list-style horizontal-list text-center nav-menu">
-      <li>
-        <a href = "{{ url_for('index') }}">Acceuil</a>
-      </li>
-      <li>
-        <a href="{{ url_for('mds') }}">Mon Dossier Santé</a>
-      </li>
-    </ul>
-  </nav>
-    <h1>Bienvenue sur Medica</h1>
-    <main>
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          <div class="flash-messages">
-            {% for category, message in messages %}
-              <p class="flash {{ category }}">{{ message }}</p>
-            {% endfor %}
-          </div>
-        {% endif %}
-      {% endwith %}
 
-      {% block content %}
-      {% endblock %}
-    </main>
-    <footer>
-      <p>&copy; 2024 Medica. Tous droits réservés.</p>
-    </footer>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medica - Gestion de santé</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1 class="site-name">Médica</h1>
+      <p class="site-title">Acceuil</p>
+      <button class="connect-btn">Se connecter</button>
+    </div>
+      <nav class="nav-bar">
+        <ul>
+          <li>
+            <a href="{{ url_for('index') }}">Acceuil</a>
+          </li>
+          <li>
+            <a href="{{ url_for('mds') }}">Mon Dossier Santé</a>
+          </li>
+        </ul>
+      </nav>
+  </header>
+  <h1>Bienvenue sur Medica</h1>
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+      <p class="flash {{ category }}">{{ message }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+  </main>
+  <footer>
+    <p>&copy; 2024 Medica. Tous droits réservés.</p>
+  </footer>
+</body>
+
 </html>
