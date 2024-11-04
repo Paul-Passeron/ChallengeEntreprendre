@@ -11,6 +11,7 @@ users = [
   ("clement.leveque", "DataScIIEnce123" )
 ]
 
+
 def valid_login(user, passwr):
   for (l, p) in users:
     if user == l and passwr == p:
@@ -23,7 +24,7 @@ current_username = None
 @app.route('/login', methods=['POST', 'GET'])
 def login():
   global current_username
-  fallback = render_template('login.html')
+  fallback = render_template('login.html', is_connected=is_connected())
   if request.method != 'POST':
     return fallback
   usr = request.form['username']
@@ -37,10 +38,13 @@ def login():
 
 @app.route('/dossier_sante')
 def mds():
-  return render_template('dossier_sante.html')
+  return render_template('dossier_sante.html', is_connected=is_connected())
 
 @app.route('/account/')
 def account():
   if current_username is None:
     return redirect(url_for('login'))
-  return render_template('account.html', person=current_username)
+  return render_template('account.html', person=current_username, is_connected=is_connected())
+
+def is_connected():
+  return not (current_username is None)
