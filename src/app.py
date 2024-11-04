@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, g
 
 app = Flask(__name__)
 
@@ -21,10 +21,12 @@ def valid_login(user, passwr):
 current_username = None
 
 
+
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
   global current_username
-  fallback = render_template('login.html', is_connected=is_connected())
+  fallback = render_template('login.html')
   if request.method != 'POST':
     return fallback
   usr = request.form['username']
@@ -38,13 +40,17 @@ def login():
 
 @app.route('/dossier_sante')
 def mds():
-  return render_template('dossier_sante.html', is_connected=is_connected())
+  return render_template('dossier_sante.html')
 
 @app.route('/account/')
 def account():
   if current_username is None:
     return redirect(url_for('login'))
-  return render_template('account.html', person=current_username, is_connected=is_connected())
+  return render_template('account.html', person=current_username)
 
 def is_connected():
   return not (current_username is None)
+
+@app.context_processor
+def inject_is_connected():
+  return dict(is_connected=is_connected)

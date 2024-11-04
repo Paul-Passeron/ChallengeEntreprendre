@@ -13,7 +13,7 @@
     <header>
       <div class="top-bar">
         <div class="site-name">Medica</div>
-        {% if not is_connected %}
+        {% if not is_connected() %}
         <div class="buttons">
           <button
             onclick="window.location.href = '{{ url_for('login') }}' ; ">Se
