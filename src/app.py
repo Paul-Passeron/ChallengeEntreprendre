@@ -6,35 +6,56 @@ app = Flask(__name__)
 def index():
   return render_template('index.html')
 
-users = [
-  ("paul.passeron", "Python123"),
-  ("clement.leveque", "DataScIIEnce123" )
-]
+class User:
+  
+  def __init__(self, email, firstname, name, password):
+    self.email = email
+    self.firstname = firstname
+    self.name = name
+    self.password = password
+    
+  def getEmail(self):
+    return self.email
+  
+  def getFirstName(self):
+    return self.firstname
+  
+  def getName(self):
+    return self.name
+  
+  def getPassword(self):
+    return self.password
 
 
-def valid_login(user, passwr):
-  for (l, p) in users:
-    if user == l and passwr == p:
+paulp = User("paul.passeron@ensiie.eu", "Paul", "Passeron", "123456")
+clement = User("clement.leveque@ensiie.eu", "Clement", "Leveque", "0000")
+
+users = [paulp, clement]
+
+def valid_login(email, passwr):
+  for user in users:
+    if user.email == email and user.password == passwr:
       return True
   return False
   
-current_username = None
-
-
+current_user = None
 
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-  global current_username
+  global current_user
   fallback = render_template('login.html')
   if request.method != 'POST':
     return fallback
-  usr = request.form['username']
+  email = request.form['email']
   psw = request.form['password']
-  couldCounnect = valid_login(usr, psw)
+  couldCounnect = valid_login(email, psw)
   if not couldCounnect:
     return fallback
-  current_username = usr
+  current_user = None
+  for u in users:
+    if u.getEmail() == email:
+      current_user = u
   return redirect(url_for('account'))
   
 
@@ -42,14 +63,27 @@ def login():
 def mds():
   return render_template('dossier_sante.html')
 
-@app.route('/account/')
+@app.route('/account')
 def account():
-  if current_username is None:
+  if current_user is None:
     return redirect(url_for('login'))
-  return render_template('account.html', person=current_username)
+  printedName = current_user.getFirstName() + " " + current_user.getName()
+  return render_template('account.html', person=printedName)
+
+
+@app.route('/signup', methods=['POST', 'GET'])
+def signup():
+  fallback = render_template('signup.html')
+  if request.method != 'POST':
+    return fallback
+  mail = request.form("email")
+  # TODO
+  
+    
+
 
 def is_connected():
-  return not (current_username is None)
+  return not (current_user is None)
 
 @app.context_processor
 def inject_is_connected():
