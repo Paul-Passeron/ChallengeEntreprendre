@@ -1,3 +1,6 @@
-<h1>Bienvenue sur Medica</h1>
+{% extends 'layout.html' %}
+
+{% block content %}
 <p>Gérez vos informations de santé en toute sécurité.</p>
 <a href="{{ url_for('profile') }}">Accéder à mon profil</a>
+{% endblock %}
