@@ -88,6 +88,12 @@ def account():
     return redirect(url_for('login'))
   return render_template('account.html')
 
+@app.route('/rappels')
+def rappels():
+  if current_user is None:
+    return redirect(url_for('login'))
+  return render_template('rappels.html')
+
 
 def is_email_valid(email):
   return email_validator(email)
