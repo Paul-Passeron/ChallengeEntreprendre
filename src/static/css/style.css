@@ -203,23 +203,29 @@ form button:hover {
 }
 
 .bubble-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 20px;
+    display: flex; /* Utilise Flexbox */
+    justify-content: center; /* Centre les bulles horizontalement */
+    flex-wrap: wrap; /* Permet aux bulles de passer à la ligne si l'espace est insuffisant */
+    margin: 20px; /* Ajustez les marges selon vos besoins */
+}
+
+.bubble ul {
+    list-style-type: disc; /* Définit le type de points */
+    padding-left: 20px; /* Ajoute un espacement à gauche pour les points */
+    margin: 0; /* Supprime la marge par défaut de la liste */
 }
 
 .bubble {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200;
     border-radius: 15%;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     position: relative;
     margin: 20px;
-}
-
-.bubble:before {
+  }
+  
+  .bubble:before {
     content: '';
     position: absolute;
     top: 50%;
@@ -230,9 +236,9 @@ form button:hover {
     border-radius: 15%;
     background-color: #e9f5fe;
     z-index: -1;
-}
-
-.bubble:after {
+  }
+  
+  .bubble:after {
     content: '';
     position: absolute;
     top: 50%;
@@ -243,7 +249,7 @@ form button:hover {
     border-radius: 15%;
     background-color: #e9f5fe;
     z-index: -2;
-}
+  }
 
 .logo {
     width: 100px;
