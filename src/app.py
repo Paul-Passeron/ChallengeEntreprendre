@@ -19,15 +19,23 @@ def index():
   return render_template('index.html')
 
 class Rappel:
-  def __init__(self, freq: str, med: str) -> None:
+  def __init__(self, freq: str, med: str, time: int, day: str) -> None:
     self.freq = freq
     self.med = med
+    self.time = time
+    self.day = day
   
   def getFreq(self) -> str:
     return self.freq
   
   def getMed(self) -> str:
     return self.med
+  
+  def getTime(self) -> int:
+    return self.time
+  
+  def getDay(self)-> str:
+    return self.day
   
   def __str__(self) -> str:
     return f"Rappel: {self.med} à prendre tous les {self.freq}"
