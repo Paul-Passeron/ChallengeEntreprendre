@@ -33,8 +33,7 @@ a:hover {
 
 /* Mise en page */
 main {
-    width: 90%;
-    max-width: 800px;
+    width: 100%;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
@@ -199,4 +198,46 @@ form button:hover {
 
 .nav-bar a:hover {
     background-color: #666;
+}
+
+/* Style du conteneur */
+.container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color: #f5f5f5;
+}
+
+/* Style du contenu principal */
+.content {
+    padding: 20px;
+    font-size: 1.2em;
+}
+
+/* Style des pastilles flottantes */
+.pastille {
+    position: absolute;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Positionnement des pastilles */
+.pastille:nth-child(2) {
+    top: 20px;
+    left: 30px;
+}
+
+.pastille:nth-child(3) {
+    top: 100px;
+    left: 150px;
+}
+
+.pastille:nth-child(4) {
+    top: 200px;
+    left: 250px;
 }
