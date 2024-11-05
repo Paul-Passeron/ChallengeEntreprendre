@@ -200,10 +200,17 @@ form button:hover {
     background-color: #666;
 }
 
+.bubble-container {
+    display: flex; /* Utilise Flexbox */
+    justify-content: center; /* Centre les bulles horizontalement */
+    flex-wrap: wrap; /* Permet aux bulles de passer à la ligne si l'espace est insuffisant */
+    margin: 20px; /* Ajustez les marges selon vos besoins */
+}
+
 .bubble {
     width: 150px;
     height: 150px;
-    border-radius: 20%;
+    border-radius: 15%;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     position: relative;
@@ -218,7 +225,7 @@ form button:hover {
     transform: translate(-50%, -50%);
     width: 100px;
     height: 100px;
-    border-radius: 20%;
+    border-radius: 15%;
     background-color: #e9f5fe;
     z-index: -1;
   }
@@ -231,7 +238,7 @@ form button:hover {
     transform: translate(-50%, -50%);
     width: 50px;
     height: 50px;
-    border-radius: 20%;
+    border-radius: 15%;
     background-color: #e9f5fe;
     z-index: -2;
   }
