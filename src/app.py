@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, g
 import sys
-
+from datetime import datetime
 import re
 
 def test_email(your_pattern, email):
@@ -23,24 +23,53 @@ def assistant():
   return render_template('assistant.html')    
     
 
-class Rappel:
-  def __init__(self, freq: str, med: str, time: int, day: str) -> None:
-    self.freq = freq
-    self.med = med
-    self.time = time
-    self.day = day
+class Hour:
+  def __init__(self, hour: int, minute: int) -> None:
+    self.hour = hour
+    self.minute = minute
   
-  def getFreq(self) -> str:
-    return self.freq
+  def getHour(self) -> int:
+    return self.hour
+  
+  def getMinute(self) -> int:
+    return self.minute
+  
+  def numeric(self) -> int:
+    return self.minute + (self.hour*60)
+
+def strToHour(hour: str) -> Hour:
+  hour = hour.split(":")
+  return Hour(int(hour[0]), int(hour[1]))
+
+class Rappel:
+  def __init__(self, times_a_day: int, med: str, period: int, hours: list) -> None:
+    self.times_a_day = times_a_day
+    self.med = med
+    self.period = period
+    self.hours = hours
+  
+  def getTimeADay(self) -> str:
+    return self.times_a_day
   
   def getMed(self) -> str:
     return self.med
   
-  def getTime(self) -> int:
-    return self.time
+  def getPeriod(self) -> int:
+    return self.period
   
-  def getDay(self)-> str:
-    return self.day
+  def getHours(self) -> list:
+    return self.hours
+  
+  def nextHour(self) -> Hour:
+    if self.hours == []:
+      return None
+    else:
+      now = strToHour(datetime.now().strftime("%H:%M")).numeric()
+      sorted_hours = self.hours.sort(key=lambda x: x.numeric())
+      for hour in sorted_hours:
+        if hour.numeric() > now:
+          return hour
+      return None
   
   def __str__(self) -> str:
     return f"Rappel: {self.med} à prendre tous les {self.freq}"
