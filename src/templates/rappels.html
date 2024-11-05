@@ -2,4 +2,8 @@
 
 {% block content %}
 <h1>Rappels</h1>
+<ul>
+{%for rappel in getRappels()%}
+    <li>{{rappel.__str__()}}</li>
+{%endfor%}
 {% endblock %}

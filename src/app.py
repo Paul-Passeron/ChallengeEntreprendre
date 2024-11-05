@@ -19,9 +19,18 @@ def index():
   return render_template('index.html')
 
 class Rappel:
-  def __init__(self, freq: int, med: str) -> None:
+  def __init__(self, freq: str, med: str) -> None:
     self.freq = freq
     self.med = med
+  
+  def getFreq(self) -> str:
+    return self.freq
+  
+  def getMed(self) -> str:
+    return self.med
+  
+  def __str__(self) -> str:
+    return f"Rappel: {self.med} à prendre tous les {self.freq}"
 
 class User:
   
@@ -55,6 +64,8 @@ users = [
   User("clement.leveque@ensiie.eu", "Clement", "Leveque", "0000")
 ]
 
+users[1].addRappel(Rappel("5 jours", "doliprane"))
+
 def valid_login(email, passwr):
   for user in users:
     if user.email == email and user.password == passwr:
@@ -63,6 +74,10 @@ def valid_login(email, passwr):
   
 current_user = None
 
+def getRappels():
+  if current_user is None:
+    return None
+  return current_user.rappels
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -155,7 +170,7 @@ def is_connected():
 
 @app.context_processor
 def inject_context():
-  return dict(is_connected=is_connected, getName=getName)
+  return dict(is_connected=is_connected, getName=getName, getRappels=getRappels)
 
 
 if __name__ == "__main__":
