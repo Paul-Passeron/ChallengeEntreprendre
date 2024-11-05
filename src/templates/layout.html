@@ -21,7 +21,13 @@
           <button>S'inscrire</button>
         </div>
         {% else %}
-        <div class="user-name">{{ getName() }}</div>
+        <div class="user-name"><a href="{{ url_for('account') }}">{{ getName()
+            }}</a></div>
+        <div class="buttons">
+          <button
+            onclick="window.location.href = '{{ url_for('disconnect') }}'">Se
+            déconnecter</button>
+        </div>
         {% endif %}
       </div>
       <nav class="nav-bar">

@@ -29,8 +29,6 @@ class User:
   def getPrintedName(self):
     return self.getFirstName() + " " + self.getName()
     
-    
-
 
 paulp = User("paul.passeron@ensiie.eu", "Paul", "Passeron", "123456")
 clement = User("clement.leveque@ensiie.eu", "Clement", "Leveque", "0000")
@@ -85,6 +83,13 @@ def signup():
   mail = request.form("email")
   # TODO
   
+  
+@app.route('/disconnect')
+def disconnect():
+  global current_user
+  current_user = None
+  return redirect(url_for('index'))
+
     
 def getName():
   if current_user is None: return None
@@ -97,3 +102,7 @@ def is_connected():
 @app.context_processor
 def inject_context():
   return dict(is_connected=is_connected, getName=getName)
+
+
+if __name__ == "__main__":
+  app.run(host='0.0.0.0')
