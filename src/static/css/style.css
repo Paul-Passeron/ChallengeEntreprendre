@@ -76,7 +76,8 @@ button:hover,
 }
 
 p {
-    font-size: 18px;
+    font-weight: 700;
+    font-size: 1.5em;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -228,6 +229,8 @@ form button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     margin: 20px;
+    font-weight: 700;
+
 }
 
 .bubble:before {
@@ -301,7 +304,7 @@ form button:hover {
 }
 
 .logo {
-    width: 100px;
+    height: 100px;
 }
 
 .background-image {
@@ -341,4 +344,12 @@ body::after {
     z-index: 999;
     width: 100%;
     height: 50px;
+}
+
+.page {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: auto;
 }

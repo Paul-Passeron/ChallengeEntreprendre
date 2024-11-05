@@ -18,6 +18,11 @@ app = Flask(__name__)
 def index():
   return render_template('index.html')
 
+@app.route('/assistant')
+def assistant():
+  return render_template('assistant.html')    
+    
+
 class Rappel:
   def __init__(self, freq: str, med: str, time: int, day: str) -> None:
     self.freq = freq
