@@ -38,6 +38,8 @@
         <a href="{{ url_for('mds') }}">Mon Dossier Santé</a>
       </nav>
     </header>
+    {% block bandeau %}
+    {% endblock %}
     <main>
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
