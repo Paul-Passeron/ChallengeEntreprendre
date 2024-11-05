@@ -3,4 +3,20 @@
 {% block content %}
 <img class="page"
   src="{{ url_for('static', filename='img/ia.png') }}">
+
+<div class="assistant-interface">
+  <div class="search-container">
+    <img class="icon"
+      src="{{ url_for('static', filename='img/loupe.png')}}">
+    <input type="text" placeholder="Posez une question..." class="search-input">
+    <button class="search-button"><img class="icon"
+        src="{{ url_for('static', filename='img/camera.png')}}"></button>
+    <button class="search-button"><img class="icon"
+        src="{{ url_for('static', filename='img/mic.png')}}"></button>
+  </div>
+  <button class="folder-button">
+    <img
+      src="{{ url_for('static', filename='img/folder.png')}}">
+  </button>
+</div>
 {% endblock %}

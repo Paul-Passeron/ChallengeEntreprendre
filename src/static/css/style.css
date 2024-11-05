@@ -10,6 +10,7 @@
 
 body {
     background-image: url("../img/background.jpeg");
+    background-attachment: fixed;
     color: #333;
     display: flex;
     flex-direction: column;
@@ -348,8 +349,92 @@ body::after {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 50%;
     height: auto;
+    padding: 100px;
+}
+
+.search-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid rgb(46, 46, 46);
+    border-radius: 45px;
+    width: 100%;
+    height: 90px;
+    max-width: 1000px;
+}
+
+.search-input {
+    font-size: 1.3em;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    flex: 1;
+
+}
+
+.search-input::placeholder {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+
+.icon {
+    height: 60px;
+}
+
+.search-button {
+    position: relative;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    transition: linear 0.1s;
+
+}
+
+.search-button:hover {
+    background-color: transparent;
+    transform: scale(1.1);
+}
+
+.assistant-interface {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.folder-button {
+    position: relative;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    transition: linear 0.1s;
+}
+
+.folder-button:hover {
+    background-color: transparent;
+    transform: scale(1.1);
+}
+
+/****************************************************************
+*                                                               *
+*                        FOR SMARTPHONES                        *
+*                                                               *
+*                                                               *
+*****************************************************************/
+
+.transparent-tabbar .tab-position .tab.active .tab-header .favicon:not(.svg),
+.theme-dark .tab-position .tab.active .tab-header .favicon:not(.svg),
+.acc-dark.color-behind-tabs-off .tab-position .tab.active .tab-header .favicon:not(.svg) {
+    filter: none;
 }
 
 @media (max-width: 768px) {
