@@ -106,7 +106,7 @@ users = [
   User("clement.leveque@ensiie.eu", "Clement", "Leveque", "0000")
 ]
 
-users[1].addRappel(Rappel("5 jours", "doliprane"))
+# users[1].addRappel(Rappel("5 jours", "doliprane"))
 
 def valid_login(email, passwr):
   for user in users:

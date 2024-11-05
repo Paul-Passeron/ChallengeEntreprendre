@@ -325,7 +325,6 @@ form button:hover {
 
 
 header {
-    /* position: sticky; */
     top: 0;
     z-index: 1000;
     background-color: white;
@@ -336,7 +335,6 @@ body::after {
     content: '';
     display: block;
     height: 50px;
-    /* Set same as footer's height */
 }
 
 .foot {
@@ -352,4 +350,86 @@ body::after {
     margin-right: auto;
     width: 80%;
     height: auto;
+}
+
+@media (max-width: 768px) {
+    .top-bar .site-name {
+        font-size: 1.5em;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .nav-bar a {
+        padding: 10px;
+        font-size: 1.2em;
+    }
+
+    .bubble,
+    .bubble-rappels {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin: 10px 0;
+        border-radius: 10px;
+    }
+
+    .bubble-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main {
+        padding: 1rem;
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    h1,
+    h2 {
+        font-size: 1.5em;
+    }
+
+    button,
+    .btn-link {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 1.2em;
+    }
+
+    .top-bar .site-name {
+        font-size: 1.2em;
+    }
+
+    .nav-bar a {
+        padding: 8px;
+        font-size: 1em;
+    }
+
+    footer {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    form input[type="text"],
+    form input[type="password"] {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    form button {
+        font-size: 14px;
+    }
 }

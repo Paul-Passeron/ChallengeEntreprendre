@@ -9,3 +9,4 @@
 - [ ] Ajout du panneau latéral
 - [ ] Gestion des rendez vous
 - [ ] Version téléphone
+  - [ ] Assistant ia surtout
