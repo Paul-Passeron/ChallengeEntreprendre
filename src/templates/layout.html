@@ -15,7 +15,7 @@
         {% if not is_connected() %}
         <div class="buttons">
           <button
-            onclick="window.location.href = '{{ url_for('login') }}' ; ">Se
+            onclick="window.location.href = '{{ url_for('login') }}';">Se
             connecter</button>
           <button>S'inscrire</button>
         </div>
@@ -24,7 +24,7 @@
             }}</a></div>
         <div class="buttons">
           <button
-            onclick="window.location.href = '{{ url_for('disconnect') }}'">Se
+            onclick="window.location.href = '{{ url_for('disconnect') }}';">Se
             déconnecter</button>
         </div>
         {% endif %}
