@@ -256,6 +256,50 @@ form button:hover {
     z-index: -2;
 }
 
+.bubble-rappels {
+    width: 300px;
+    height: 130px;
+    border-radius: 15%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin: 20px;
+}
+
+.bubble-rappels:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 15%;
+    background-color: #e9f5fe;
+    z-index: -1;
+}
+
+.bubble-rappels:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 15%;
+    background-color: #e9f5fe;
+    z-index: -2;
+}
+
+.bubble-rappels h4 {
+    list-style-type: disc;
+    padding-left: 40px;
+    padding-top: 40px;
+    margin: 0;
+    padding-right: 40px;
+}
+
 .logo {
     width: 100px;
 }

@@ -2,8 +2,12 @@
 
 {% block content %}
 <h1>Rappels</h1>
-<ul>
-{%for rappel in getRappels()%}
-    <li>{{rappel.__str__()}}</li>
-{%endfor%}
+<div class="bubble-container">
+    {%for rappel in getRappels()%}
+        <div class="bubble-rappels">
+            <h4>{{rappel.__str__()}}</h4>
+        </div>
+    {%endfor%}
+</div>
+
 {% endblock %}
