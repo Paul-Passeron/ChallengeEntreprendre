@@ -211,13 +211,18 @@ form button:hover {
 
 .bubble ul {
     list-style-type: disc; /* Définit le type de points */
-    padding-left: 20px; /* Ajoute un espacement à gauche pour les points */
+    padding-left: 40px; /* Ajoute un espacement à gauche pour les points */
     margin: 0; /* Supprime la marge par défaut de la liste */
+    padding-right: 20px;
+}
+
+.bubble h2 {
+    padding-top: 20px;
 }
 
 .bubble {
-    width: 200px;
-    height: 200;
+    width: 300px;
+    height: 300px;
     border-radius: 15%;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
