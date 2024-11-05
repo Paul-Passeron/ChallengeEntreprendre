@@ -17,13 +17,12 @@ body {
 
 h1,
 h2 {
-    color: #4CAF50;
-    /* Couleur verte pour les titres */
+    color: rgb(2, 50, 77);
     text-align: center;
 }
 
 a {
-    color: #4CAF50;
+    color: #02344D;
     text-decoration: none;
 }
 
@@ -56,7 +55,7 @@ button,
 .btn-link {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: rgb(2, 50, 77);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -68,7 +67,7 @@ button,
 
 button:hover,
 .btn-link:hover {
-    background-color: #45a049;
+    background-color: rgb(2, 170, 160);
 }
 
 /* Texte de bienvenue */
@@ -113,7 +112,7 @@ form input[type="password"] {
 form button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #02344D;
     color: white;
     border: none;
     border-radius: 4px;
@@ -122,7 +121,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #45a049;
+    background-color: #03354E;
 }
 
 .flash {
@@ -153,17 +152,21 @@ form button:hover {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #333;
-    color: white;
+    background-color: white;
+    color: #333;
 }
 
 .top-bar .buttons button {
-    background-color: #555;
+    background-color: rgb(2, 50, 77);
     color: white;
     border: none;
     padding: 8px 12px;
     margin-right: 10px;
     cursor: pointer;
+}
+
+.top-bar .buttons button:hover {
+    background-color: rgb(2, 170, 160);
 }
 
 .top-bar .site-name {
@@ -180,11 +183,10 @@ form button:hover {
     margin-right: 20px;
 }
 
-/* Style pour la barre de navigation */
 .nav-bar {
+    background-color: rgb(2, 50, 77);
     display: flex;
     justify-content: center;
-    background-color: #444;
 }
 
 .nav-bar a {
@@ -197,14 +199,14 @@ form button:hover {
 }
 
 .nav-bar a:hover {
-    background-color: #666;
+    background-color: rgb(2, 170, 160);
 }
 
 .bubble-container {
-    display: flex; /* Utilise Flexbox */
-    justify-content: center; /* Centre les bulles horizontalement */
-    flex-wrap: wrap; /* Permet aux bulles de passer à la ligne si l'espace est insuffisant */
-    margin: 20px; /* Ajustez les marges selon vos besoins */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px;
 }
 
 .bubble {
@@ -212,12 +214,12 @@ form button:hover {
     height: 150px;
     border-radius: 15%;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     margin: 20px;
-  }
-  
-  .bubble:before {
+}
+
+.bubble:before {
     content: '';
     position: absolute;
     top: 50%;
@@ -228,9 +230,9 @@ form button:hover {
     border-radius: 15%;
     background-color: #e9f5fe;
     z-index: -1;
-  }
-  
-  .bubble:after {
+}
+
+.bubble:after {
     content: '';
     position: absolute;
     top: 50%;
@@ -241,4 +243,8 @@ form button:hover {
     border-radius: 15%;
     background-color: #e9f5fe;
     z-index: -2;
-  }
+}
+
+.logo {
+    width: 100px;
+}
