@@ -1,4 +1,16 @@
 from flask import Flask, render_template, redirect, url_for, request, g
+import sys
+
+import re
+
+def test_email(your_pattern, email):
+  pattern = re.compile(your_pattern)
+  return re.match(pattern, email)
+
+pattern = r"\"?([-a-zA-Z0-9.`?{}]+@\w+\.\w+)\"?" 
+
+def email_validator(email):
+  return test_email(pattern, email)
 
 app = Flask(__name__)
 
@@ -30,10 +42,10 @@ class User:
     return self.getFirstName() + " " + self.getName()
     
 
-paulp = User("paul.passeron@ensiie.eu", "Paul", "Passeron", "123456")
-clement = User("clement.leveque@ensiie.eu", "Clement", "Leveque", "0000")
-
-users = [paulp, clement]
+users = [
+  User("paul.passeron@ensiie.eu", "Paul", "Passeron", "123456"),
+  User("clement.leveque@ensiie.eu", "Clement", "Leveque", "0000")
+]
 
 def valid_login(email, passwr):
   for user in users:
@@ -46,7 +58,9 @@ current_user = None
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-  global current_user
+  global users, current_user
+  for user in users:
+    print("Mail is ", user.getEmail())
   fallback = render_template('login.html')
   if request.method != 'POST':
     return fallback
@@ -72,16 +86,42 @@ def mds():
 def account():
   if current_user is None:
     return redirect(url_for('login'))
-  return render_template('account.html', person=current_user.getPrintedName())
+  return render_template('account.html')
 
 
+def is_email_valid(email):
+  return email_validator(email)
+  
+
+def is_email_availaible(email):
+  for user in users:
+    if user.getEmail() == email:
+      return False
+  return True
+
+  
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
-  fallback = render_template('signup.html')
+  global users, current_user
+  fallback = render_template("signup.html")
   if request.method != 'POST':
     return fallback
-  mail = request.form("email")
-  # TODO
+  name = request.form["name"]
+  first_name = request.form["first_name"]
+  mail = request.form["email"]
+  pssw = request.form["password"]
+  conf_pssw = request.form["confirm_password"]
+  if pssw != conf_pssw:
+    return fallback
+  if not is_email_valid(mail):
+    print("INVALID EMAIL")
+    return fallback
+  if not is_email_availaible(mail):
+    print("UNAVAILABLE EMAIL")
+    return fallback
+  u = User(mail, first_name, name, pssw)
+  users.append(u)
+  return redirect(url_for('login'))
   
   
 @app.route('/disconnect')
@@ -105,4 +145,4 @@ def inject_context():
 
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0')
+  app.run(host='0.0.0.0', debug=True)

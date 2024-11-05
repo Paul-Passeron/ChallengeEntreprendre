@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Inscription</h2>
+<form action="{{ url_for('signup') }}" method="POST">
+  <label for="name">Nom:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="first_name">Prénom:</label>
+  <input type="text" id="first_name" name="first_name" required>
+
+  <label for="email">E-Mail:</label>
+  <input type="text" id="email" name="email" required>
+
+  <label for="password">Mot de passe:</label>
+  <input type="password" id="password" name="password" required>
+
+  <label for="confirm_password">Confirmer le mot de passe:</label>
+  <input type="password" id="confirm_password" name="confirm_password"
+    required>
+
+  <button type="submit">S'inscrire</button>
+</form>
+
+{% if error %}
+<p style="color: red; text-align: center;">{{ error }}</p>
+{% endif %}
+{% endblock %}
