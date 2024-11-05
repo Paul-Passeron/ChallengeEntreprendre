@@ -18,13 +18,19 @@ app = Flask(__name__)
 def index():
   return render_template('index.html')
 
+class Rappel:
+  def __init__(self, freq: int, med: str) -> None:
+    self.freq = freq
+    self.med = med
+
 class User:
   
-  def __init__(self, email, firstname, name, password):
+  def __init__(self, email, firstname, name, password) -> None:
     self.email = email
     self.firstname = firstname
     self.name = name
     self.password = password
+    self.rappels = []
     
   def getEmail(self):
     return self.email
@@ -40,7 +46,9 @@ class User:
   
   def getPrintedName(self):
     return self.getFirstName() + " " + self.getName()
-    
+  
+  def addRappel(self, rappel: Rappel) -> None:
+    self.rappels.append(rappel)
 
 users = [
   User("paul.passeron@ensiie.eu", "Paul", "Passeron", "123456"),
