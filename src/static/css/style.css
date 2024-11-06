@@ -15,6 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    margin: 0;
 }
 
 h1,
@@ -129,6 +130,28 @@ form button:hover {
     background-color: #03354E;
 }
 
+.main-content {
+    display: flex; /* Utiliser flexbox pour la mise en page */
+    justify-content: center;
+    padding: 20px;
+}
+
+.sidebar {
+    width: 200px;
+    flex: 1; /* Prend 1 part de l'espace */
+    padding: 20px;
+    background-color: #f0f0f0; /* Couleur de fond pour le panneau latéral */
+    border-right: 1px solid #ccc; /* Bordure droite pour séparer le contenu */
+    margin-right: 20px;
+}
+
+.primary-content {
+    flex: 3; /* Prend 3 parts de l'espace */
+    padding: 20px;
+    display: flex; /* Utiliser flexbox à l'intérieur du contenu principal */
+    flex-direction: column; /* Aligne les éléments en colonne */
+    align-items: center; /* Centre les éléments horizontalement */
+}
 
 .flash {
     padding: 10px;
@@ -225,6 +248,7 @@ form button:hover {
     justify-content: center;
     flex-wrap: wrap;
     margin: 20px;
+    gap: 20px;
 }
 
 .bubble ul {
