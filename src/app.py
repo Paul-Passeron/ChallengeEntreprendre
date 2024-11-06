@@ -3,6 +3,10 @@ import sys
 from datetime import datetime
 import re
 import os
+from transformers import pipeline
+
+chatbot = pipeline("text-generation", model="gpt2")
+
 
 def test_email(your_pattern, email):
   pattern = re.compile(your_pattern)
@@ -317,7 +321,9 @@ def disconnect():
 
 @app.route('/discussion')
 def discussion():
-  return render_template('discussion.html', question=question)
+  response = chatbot(question, max_length=50, num_return_sequences=1)
+  
+  return render_template('discussion.html', question=question, response=response[0]['generated_text'])
     
 def getPrintedName():
   if current_user is None: return None
