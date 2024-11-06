@@ -461,6 +461,7 @@ body::after {
     width: 80%;
 }
 
+
 .folder-button {
     position: relative;
     background-color: transparent;
@@ -753,12 +754,18 @@ form input[type="number"]:focus {
 }
 
 .doc-preview {
-    width: 150px; /* Ajustez la largeur selon vos besoins */
-    height: auto; /* Conserve les proportions de l'image */
-    border-radius: 10px; /* Bords arrondis */
-    display: block; /* Nécessaire pour centrer l'élément */
-    margin: 0 auto; /* Centre l'image horizontalement */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optionnel : ajoute une ombre légère */
+    width: 150px;
+    /* Ajustez la largeur selon vos besoins */
+    height: auto;
+    /* Conserve les proportions de l'image */
+    border-radius: 10px;
+    /* Bords arrondis */
+    display: block;
+    /* Nécessaire pour centrer l'élément */
+    margin: 0 auto;
+    /* Centre l'image horizontalement */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Optionnel : ajoute une ombre légère */
 }
 
 .no-bullet {

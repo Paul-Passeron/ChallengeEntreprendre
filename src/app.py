@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
+from flask import Flask, render_template, redirect, url_for, request, flash, jsonify
 import sys
 from datetime import datetime
 import re
@@ -23,9 +23,20 @@ app.secret_key = 'secret_key'
 def index():
   return render_template('index.html')
 
-@app.route('/assistant')
+question = ""
+
+@app.route('/assistant', methods=['POST', 'GET'])
 def assistant():
-  return render_template('assistant.html')    
+  global question, current_user
+  if current_user is None:
+    return redirect(url_for('login'))
+  fallback = render_template('assistant.html')
+  if request.method != 'POST':
+    return fallback
+  data = request.get_json()
+  question = data.get('question')
+  
+  return  jsonify({"message": "Received the question"}), 400 
     
 @app.route('/modified_profile')
 def modified_profile():
@@ -163,8 +174,6 @@ def getCarteVitale() -> str:
 @app.route('/login', methods=['POST', 'GET'])
 def login():
   global users, current_user
-  for user in users:
-    print("Mail is ", user.getEmail())
   fallback = render_template('login.html')
   if request.method != 'POST':
     return fallback
@@ -308,9 +317,9 @@ def disconnect():
   return redirect(url_for('index'))
 
 
-@app.route('/discussion/<question>')
-def discussion(question):
-  return '<h1>' + question + '</h1>'
+@app.route('/discussion')
+def discussion():
+  return render_template('discussion.html', question=question)
     
 def getName():
   if current_user is None: return None
