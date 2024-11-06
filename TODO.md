@@ -9,3 +9,8 @@
   - [x] Generer des images de preview pour les documents
 - [x] Version téléphone
   - [x] Assistant ia surtout
+- [ ] Chat bot appel api chatgpt
+- [ ] Modifier style.css Rappels
+- [ ] Page profil
+  - [ ] Ajouter carte vitale
+  - [ ] Modifier profil 
