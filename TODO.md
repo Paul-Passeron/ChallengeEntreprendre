@@ -11,6 +11,6 @@
   - [x] Assistant ia surtout
 - [ ] Chat bot appel api chatgpt
 - [ ] Modifier style.css Rappels
-- [ ] Page profil
-  - [ ] Ajouter carte vitale
-  - [ ] Modifier profil 
+- [x] Page profil
+  - [x] Ajouter carte vitale
+  - [x] Modifier profil 
