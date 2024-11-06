@@ -149,7 +149,7 @@ def login():
   for u in users:
     if u.getEmail() == email:
       current_user = u
-  return redirect(url_for('account'))
+  return redirect(url_for('index'))
   
 
 @app.route('/dossier_sante', methods=['GET', 'POST'])
@@ -260,7 +260,7 @@ def disconnect():
 
 @app.route('/discussion/<question>')
 def discussion(question):
-  pass
+  return '<h1>' + question + '</h1>'
     
 def getName():
   if current_user is None: return None
