@@ -1,5 +1,76 @@
 {% extends 'layout.html' %}
 {% block content %}
-<h2>Question:</h2> <p> {{ question }}</p>
-<h2>Reponse:</h2> <p> {{ response }}</p>
+
+</head>
+<body>
+ <div class="container">
+  <div class="chat-container">
+    {% for  message in getMessages() %}
+      {% if message.isUser() %}
+        <div class="chat-bubble user">
+          <p>
+            {{ message.getContent() }}
+          </p>
+        </div>
+      {% else %}
+        <span style="display: flex;">
+          <div class="logo-container">
+          <img src="{{ url_for('static', filename='img/logo.png') }}"/>
+          </div>
+          <div class="chat-bubble bot">
+            <p>
+              {{ message.getContent() }}
+            </p>
+          </div>
+        </span>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+ </div>
+ <div class="assistant-interface">
+  <div class="search-container">
+    <img class="icon"
+      src="{{ url_for('static', filename='img/loupe.png')}}">
+    <form class="assistant-form" action="{{ url_for('assistant')}}"
+      method="POST" style="display: none;">
+      <input type="text" placeholder="Posez une question..."
+        class="search-input">
+    </form>
+    <input type="text" placeholder="Posez une question..."
+      class="search-input" id='question-input'>
+    <button class="search-button"><img class="icon"
+        src="{{ url_for('static', filename='img/camera.png')}}"></button>
+    <button class="search-button"><img class="icon"
+        src="{{ url_for('static', filename='img/mic.png')}}"></button>
+  </div>
+
+</div>
+
+ <script>
+  document.getElementById('question-input').addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    const inputValue = this.value;
+    fetch("{{ url_for('discussion') }}", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ question: inputValue })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      this.value = '';
+        window.location.href = "{{ url_for('discussion') }}"
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+});
+</script>
+
+
 {% endblock %}
