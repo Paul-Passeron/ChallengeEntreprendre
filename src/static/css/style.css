@@ -592,18 +592,43 @@ form input[type="number"]:focus {
     color: #003d4c;
 }
 
+
+
+.data-box .data-item .date {
+    font-size: 12px;
+    color: #000000;
+}
+
+.data-box .data-item {
+    display: flex;
+    /* Use flexbox layout */
+    justify-content: space-between;
+    /* Space between items */
+    align-items: center;
+    /* Center items vertically */
+    margin-bottom: 10px;
+}
+
+.data-box .data-item img {
+    width: 50px;
+    /* Set a fixed width for the image */
+    height: auto;
+    /* Maintain aspect ratio */
+    margin-left: auto;
+    /* Push the image to the right */
+}
+
+
 .data-box .data-item .value {
     background-color: #00a99d;
     color: #ffffff;
     padding: 10px;
     border-radius: 10px;
     font-size: 24px;
+    width: 200px;
+    margin-left: auto;
 }
 
-.data-box .data-item .date {
-    font-size: 12px;
-    color: #000000;
-}
 
 
 
