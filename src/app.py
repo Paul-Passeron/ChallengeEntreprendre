@@ -17,6 +17,7 @@ app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = 'static/uploads'  # Assurez-vous que cela est bien défini
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limite de 16 Mo
+app.secret_key = 'secret_key'
 
 @app.route('/')
 def index():
@@ -26,6 +27,9 @@ def index():
 def assistant():
   return render_template('assistant.html')    
     
+@app.route('/modified_profile')
+def modified_profile():
+  return render_template('modified_profile.html')
 
 class Hour:
   def __init__(self, hour: int, minute: int) -> None:
@@ -85,34 +89,38 @@ class Rappel:
 
 class User:
   
-  def __init__(self, email, firstname, name, password) -> None:
+  def __init__(self, email: str, firstname: str, name: str, password: str, carte_vitale: str) -> None:
     self.email = email
     self.firstname = firstname
     self.name = name
     self.password = password
     self.rappels = []
+    self.carte_vitale = carte_vitale
     
-  def getEmail(self):
+  def getEmail(self) -> str:
     return self.email
   
-  def getFirstName(self):
+  def getFirstName(self) -> str:
     return self.firstname
   
-  def getName(self):
+  def getName(self) -> str:
     return self.name
   
-  def getPassword(self):
+  def getPassword(self) -> str:
     return self.password
   
-  def getPrintedName(self):
+  def getCarteVitale(self) -> str:
+    return self.carte_vitale
+  
+  def getPrintedName(self) -> str:
     return self.getFirstName() + " " + self.getName()
   
   def addRappel(self, rappel: Rappel) -> None:
     self.rappels.append(rappel)
 
 users = [
-  User("paul.passeron@ensiie.eu", "Paul", "Passeron", "123456"),
-  User("clement.leveque@ensiie.eu", "Clement", "Leveque", "0000")
+  User("paul.passeron@ensiie.eu", "Paul", "Passeron", "123456", "225654981"),
+  User("clement.leveque@ensiie.eu", "Clement", "Leveque", "0000", "654981321")
 ]
 
 users[1].addRappel(Rappel("Doliprane", 5, [Hour(12,50), Hour(15,30), Hour(20,20)]))
@@ -131,6 +139,26 @@ def getRappels():
   if current_user is None:
     return None
   return current_user.rappels
+
+def getEmail() -> str:
+  if current_user is None:
+    return None
+  return current_user.getEmail()
+
+def getName() -> str:
+  if current_user is None:
+    return None
+  return current_user.getName()
+
+def getFirstName() -> str:
+  if current_user is None:
+    return None
+  return current_user.getFirstName()
+
+def getCarteVitale() -> str:
+  if current_user is None:
+    return None
+  return current_user.getCarteVitale()
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -249,7 +277,29 @@ def signup():
   u = User(mail, first_name, name, pssw)
   users.append(u)
   return redirect(url_for('login'))
-  
+
+@app.route('/update_profile', methods=['POST'])
+def update_profile():
+  global users, current_user
+  if current_user is None:
+    return redirect(url_for('login'))
+
+  first_name = request.form['first_name']
+  name = request.form['name']
+  email = request.form['email']
+  password = request.form['password']
+  carte_vitale = request.form.get('carte_vitale', '')  # Optionnel
+
+  # Mettez à jour les informations de l'utilisateur
+  current_user.firstname = first_name
+  current_user.name = name
+  current_user.email = email
+  current_user.password = password  # Pensez à hasher le mot de passe dans une application réelle
+  current_user.carte_vitale = carte_vitale  # Assurez-vous que l'attribut existe dans la classe User
+
+  flash('Profil mis à jour avec succès !')
+  return redirect(url_for('modified_profile'))
+
   
 @app.route('/disconnect')
 def disconnect():
@@ -272,7 +322,7 @@ def is_connected():
 
 @app.context_processor
 def inject_context():
-  return dict(is_connected=is_connected, getName=getName, getRappels=getRappels)
+  return dict(is_connected=is_connected, getName=getName, getRappels=getRappels, getFirstName=getFirstName, getEmail=getEmail, getCarteVitale=getCarteVitale)
 
 
 if __name__ == "__main__":
