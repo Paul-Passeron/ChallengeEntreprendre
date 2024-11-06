@@ -131,26 +131,34 @@ form button:hover {
 }
 
 .main-content {
-    display: flex; /* Utiliser flexbox pour la mise en page */
+    display: flex;
+    /* Utiliser flexbox pour la mise en page */
     justify-content: center;
     padding: 20px;
 }
 
 .sidebar {
     width: 200px;
-    flex: 1; /* Prend 1 part de l'espace */
+    flex: 1;
+    /* Prend 1 part de l'espace */
     padding: 20px;
-    background-color: #f0f0f0; /* Couleur de fond pour le panneau latéral */
-    border-right: 1px solid #ccc; /* Bordure droite pour séparer le contenu */
+    background-color: #f0f0f0;
+    /* Couleur de fond pour le panneau latéral */
+    border-right: 1px solid #ccc;
+    /* Bordure droite pour séparer le contenu */
     margin-right: 20px;
 }
 
 .primary-content {
-    flex: 3; /* Prend 3 parts de l'espace */
+    flex: 3;
+    /* Prend 3 parts de l'espace */
     padding: 20px;
-    display: flex; /* Utiliser flexbox à l'intérieur du contenu principal */
-    flex-direction: column; /* Aligne les éléments en colonne */
-    align-items: center; /* Centre les éléments horizontalement */
+    display: flex;
+    /* Utiliser flexbox à l'intérieur du contenu principal */
+    flex-direction: column;
+    /* Aligne les éléments en colonne */
+    align-items: center;
+    /* Centre les éléments horizontalement */
 }
 
 .flash {
@@ -467,7 +475,6 @@ body::after {
 }
 
 .navbutton {
-    padding: 10px;
     align-items: center;
     position: relative;
     display: inline-flex;
@@ -480,8 +487,8 @@ body::after {
 
 .navimg {
     margin-right: 5px;
-    width: 35px;
-    height: auto;
+    height: 35px;
+    width: auto;
 }
 
 
