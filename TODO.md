@@ -1,12 +1,12 @@
 # TODO
 
-- [ ] Page d'acceuil stylée
+- [x] Page d'acceuil stylée
 - [ ] Rappels
+  - [x] Display
+  - [ ] add_rappel
 - [ ] Données de santé en temps réel
 - [ ] Dossier santé avec des documents etc
   - [ ] Generer des images de preview pour les documents
-- [ ] Ajout des autres sections
-- [ ] Ajout du panneau latéral
-- [ ] Gestion des rendez vous
-- [ ] Version téléphone
+- [ ] Ajout du panneau latéral : actualités
+- [x] Version téléphone
   - [ ] Assistant ia surtout
