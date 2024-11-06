@@ -261,8 +261,8 @@ form button:hover {
 }
 
 .bubble-rappels {
-    width: 300px;
-    height: 130px;
+    width: 330px;
+    height: 200px;
     border-radius: 15%;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -296,12 +296,20 @@ form button:hover {
     z-index: -2;
 }
 
-.bubble-rappels h4 {
+.bubble-rappels h3 {
     list-style-type: disc;
     padding-left: 40px;
-    padding-top: 40px;
+    padding-top: 20px;
     margin: 0;
     padding-right: 40px;
+    text-align: center;
+}
+
+.bubble-rappels ul {
+    list-style-type: disc;
+    padding-left: 40px;
+    margin: 0;
+    padding-right: 20px;
 }
 
 .logo {
