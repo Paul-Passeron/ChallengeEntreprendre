@@ -2,4 +2,74 @@
 
 {% block content %}
 <img class="page" src="{{url_for('static', filename='img/data.png')}}">
+
+<div class="data-section">
+  <div class="data-box">
+   <h2>
+    {{ getName() }}
+   </h2>
+   <div class="data-item">
+    <span>
+     TAILLE
+    </span>
+    <div class="value">
+     1.95 CM
+    </div>
+   </div>
+   <div class="data-item">
+    <span class="date">
+     MAJ. 17/09/2024
+    </span>
+   </div>
+   <div class="data-item">
+    <span>
+     POIDS
+    </span>
+    <div class="value">
+     71 KG
+    </div>
+   </div>
+   <div class="data-item">
+    <span class="date">
+     MAJ. 17/09/2024
+    </span>
+   </div>
+   <div class="data-item">
+    <span>
+     ÂGE
+    </span>
+    <div class="value">
+     23 ANS
+    </div>
+   </div>
+   <div class="data-item">
+    <span class="date">
+     MAJ. 03/04/2024
+    </span>
+   </div>
+  </div>
+  <div class="data-box">
+   <h2>
+    OBJECT CONNECTÉ : MONTRE X987-17
+   </h2>
+   <div class="data-item">
+    <span>
+     TEMPÉRATURE CORPORELLE
+    </span>
+    <div class="value">
+     37.3°C
+    </div>
+   </div>
+   <div class="data-item">
+    <span>
+     FRÉQUENCE CARDIAQUE
+    </span>
+    <div class="value">
+     65 BPM
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+
 {% endblock%}

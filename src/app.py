@@ -245,7 +245,7 @@ def disconnect():
     
 def getName():
   if current_user is None: return None
-  return current_user.getPrintedName()
+  return current_user.getPrintedName().upper()
 
 
 def is_connected():
