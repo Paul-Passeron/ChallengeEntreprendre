@@ -62,6 +62,14 @@
             Mes Rappels
           </div>
         </a>
+        <a href="{{ url_for('data') }}">
+          <div class="nav-content">
+            <img class="navimg"
+              src="{{url_for('static', filename='img/datalogo.png')}}"
+              alt="Mes Données">
+            Mes Données
+          </div>
+        </a>
         <a href="{{ url_for('assistant') }}">
           <div class="nav-content">
             <img class="navimg"
@@ -70,6 +78,7 @@
             Mon Conseiller
           </div>
         </a>
+
       </nav>
     </header>
     {% block bandeau %}

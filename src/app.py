@@ -190,6 +190,11 @@ def add_rappel():
   addRappelToUser(r)
   return redirect(url_for('rappels'))
 
+@app.route('/data')
+def data():
+  if current_user is None:
+    return redirect(url_for(login))
+  return render_template('data.html')
 
 def addRappelToUser(r: Rappel):
   for user in users:
