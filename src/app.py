@@ -165,6 +165,12 @@ def rappels():
     return redirect(url_for('login'))
   return render_template('rappels.html')
 
+@app.route('/add_rappel')
+def add_rappel():
+  if current_user is None:
+    return redirect(url_for('login'))
+  return render_template('add_rappel.html')
+
 
 def is_email_valid(email):
   return email_validator(email)

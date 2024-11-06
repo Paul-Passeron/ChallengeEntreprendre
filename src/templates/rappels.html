@@ -14,5 +14,9 @@
         </div>
     {%endfor%}
 </div>
+<div class="buttons">
+    <button
+      onclick="window.location.href = '{{ url_for('add_rappel') }}';">Ajouter un rappel</button>
+  </div>
 
 {% endblock %}
