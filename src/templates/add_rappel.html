@@ -2,32 +2,35 @@
 
 {% block content %}
 <h2>Ajout d'un rappel</h2>
-<form action="{{ url_for('login') }}" method="POST">
+<form action="{{ url_for('add_rappel') }}" method="POST">
     <label for="med_name">Nom</label>
     <input type="text" id="med_name" name="med_name" required>
 
     <label for="period">Durée de prise en jours</label>
-    <input type="number" id="period" name="period" required>
+    <input type="number" id="period" name="period" min="1" required>
 
     <label>Heures de prise</label>
     <div id="timeInputs">
-        <input type="time" name="timeInput[]" required>
+        <input type="time" name="timeInput[]" class="time-input" required>
     </div>
-    <div class="button-hour">
-        <button type="button" onclick="addTimeInput()">Ajouter une heure</button>
-    </div> <br>
-    <button type="submit">Ajouter le rappel</button>
+    <div class="buttons-hour">
+        <button class="button-hour" type="button"
+            onclick="addTimeInput()">Ajouter une
+            heure</button>
+    </div>
+    <div class="buttons-hour">
+        <button class="button-hour" type="submit">Ajouter le rappel</button>
+    </div>
 </form>
 
 <script>
     function addTimeInput() {
-        // Créer un nouvel élément input de type time
         const newInput = document.createElement('input');
         newInput.type = 'time';
-        newInput.name = 'timeInput[]'; // Utiliser un tableau pour les heures
-        newInput.required = true; // Rendre ce champ requis
+        newInput.name = 'timeInput[]';
+        newInput.className = 'time-input'; // Add the same class for styling
+        newInput.required = true;
 
-        // Ajouter le nouvel input au div existant
         document.getElementById('timeInputs').appendChild(newInput);
     }
 </script>

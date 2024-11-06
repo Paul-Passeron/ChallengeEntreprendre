@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, g
+from flask import Flask, render_template, redirect, url_for, request, flash
 import sys
 from datetime import datetime
 import re
@@ -114,13 +114,14 @@ users = [
 users[1].addRappel(Rappel("Doliprane", 5, [Hour(12,50), Hour(15,30), Hour(20,20)]))
 users[1].addRappel(Rappel("Paracétamol", 2, [Hour(11,15), Hour(20,20)]))
 
+current_user = users[1]
+
 def valid_login(email, passwr):
   for user in users:
     if user.email == email and user.password == passwr:
       return True
   return False
   
-current_user = users[1]
 
 def getRappels():
   if current_user is None:
@@ -165,12 +166,35 @@ def rappels():
     return redirect(url_for('login'))
   return render_template('rappels.html')
 
-@app.route('/add_rappel')
+@app.route('/add_rappel', methods=['POST', 'GET'])
 def add_rappel():
   if current_user is None:
     return redirect(url_for('login'))
-  return render_template('add_rappel.html')
+  fallback = render_template('add_rappel.html') 
+  if request.method != 'POST':
+    return fallback
+  med_name = request.form['med_name']
+  period = request.form['period']
+  timeInputs = request.form.getlist('timeInput[]')
+  print("MED NAME: ", med_name)
+  print("PERIOD: ", period)
+  print("TIME INPUTS: ", timeInputs)
+  if not med_name or not period or not timeInputs:
+    flash('Remplissez tous les champs pour ajouter un rappel')
+    return fallback
+  hours = []
+  for h in timeInputs:
+    hour = strToHour(h)
+    hours.append(hour)
+  r = Rappel(med_name,  period, hours)
+  addRappelToUser(r)
+  return redirect(url_for('rappels'))
 
+
+def addRappelToUser(r: Rappel):
+  for user in users:
+    if user.getEmail() == current_user.getEmail():
+      user.addRappel(r)
 
 def is_email_valid(email):
   return email_validator(email)
