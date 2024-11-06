@@ -36,6 +36,9 @@ class Hour:
   
   def numeric(self) -> int:
     return self.minute + (self.hour*60)
+  
+  def __str__(self) -> str:
+    return f"{self.hour}:{self.minute}"
 
 def strToHour(hour: str) -> Hour:
   hour = hour.split(":")
@@ -71,8 +74,14 @@ class Rappel:
           return hour
       return None
   
-  def __str__(self) -> str:
-    return f"Rappel: {self.med} à prendre tous les {self.freq}"
+  def strInfo(self) -> str:
+    return f"Médicament à prendre {self.times_a_day} fois par jour pendant {self.period} jours"
+  
+  def strHours(self) -> str:
+    return f"Heures de prise du médicament : {(x.__str__() for x in self.hours)}"
+  
+  def strNextHour(self) -> str:
+    return f"Prochaine prise du médicament : {self.nextHour.__str__()}"
 
 class User:
   
