@@ -12,9 +12,11 @@
 <h2>Documents téléchargés :</h2>
 <ul>
     {% for document in documents %}
-        <li class="no-bullet">
-            <a href="{{ url_for('static', filename='uploads/'+document) }}">
-            <img class="doc-preview" src="{{ url_for('static', filename='uploads/'+document) }}">
+    <li class="no-bullet">
+        <a target="_blank" rel="noopener noreferrer"
+            href="{{ url_for('static', filename='uploads/'+document) }}">
+            <img class="doc-preview"
+                src="{{ url_for('static', filename='uploads/'+document) }}">
         </a>
     </li>
     {% endfor %}

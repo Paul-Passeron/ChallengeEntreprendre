@@ -153,7 +153,7 @@ def login():
   
 
 @app.route('/dossier_sante', methods=['GET', 'POST'])
-def mds():
+def dossier_sante():
   if current_user is None:
     return redirect(url_for('login'))
   if request.method == 'POST':
@@ -257,6 +257,10 @@ def disconnect():
   current_user = None
   return redirect(url_for('index'))
 
+
+@app.route('/discussion/<question>')
+def discussion(question):
+  pass
     
 def getName():
   if current_user is None: return None
