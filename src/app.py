@@ -278,10 +278,8 @@ def signup():
   if pssw != conf_pssw:
     return fallback
   if not is_email_valid(mail):
-    print("INVALID EMAIL")
     return fallback
   if not is_email_availaible(mail):
-    print("UNAVAILABLE EMAIL")
     return fallback
   u = User(mail, first_name, name, pssw)
   users.append(u)
@@ -321,7 +319,7 @@ def disconnect():
 def discussion():
   return render_template('discussion.html', question=question)
     
-def getName():
+def getPrintedName():
   if current_user is None: return None
   return current_user.getPrintedName().upper()
 
@@ -331,7 +329,7 @@ def is_connected():
 
 @app.context_processor
 def inject_context():
-  return dict(is_connected=is_connected, getName=getName, getRappels=getRappels, getFirstName=getFirstName, getEmail=getEmail, getCarteVitale=getCarteVitale)
+  return dict(is_connected=is_connected, getPrintedName=getPrintedName, getName=getName,getRappels=getRappels, getFirstName=getFirstName, getEmail=getEmail, getCarteVitale=getCarteVitale)
 
 
 if __name__ == "__main__":

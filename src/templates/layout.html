@@ -28,7 +28,8 @@
             onclick="window.location.href = '{{ url_for('signup') }}';">S'inscrire</button>
         </div>
         {% else %}
-        <div class="user-name"><a href="{{ url_for('account') }}">{{ getName()
+        <div class="user-name"><a href="{{ url_for('account') }}">{{
+            getPrintedName()
             }}</a></div>
         <div class="buttons">
           <button
