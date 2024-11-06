@@ -1,11 +1,11 @@
 # TODO
 
 - [x] Page d'acceuil stylée
-- [ ] Rappels
+- [x] Rappels
   - [x] Display
-  - [ ] add_rappel
+  - [x] add_rappel
 - [ ] Données de santé en temps réel
 - [ ] Dossier santé avec des documents etc
   - [ ] Generer des images de preview pour les documents
 - [x] Version téléphone
-  - [ ] Assistant ia surtout
+  - [x] Assistant ia surtout

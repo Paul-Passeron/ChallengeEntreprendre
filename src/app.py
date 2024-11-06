@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, flash
 import sys
 from datetime import datetime
 import re
+import os
 
 def test_email(your_pattern, email):
   pattern = re.compile(your_pattern)
@@ -13,6 +14,9 @@ def email_validator(email):
   return test_email(pattern, email)
 
 app = Flask(__name__)
+
+app.config['UPLOAD_FOLDER'] = 'static/uploads'  # Assurez-vous que cela est bien défini
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limite de 16 Mo
 
 @app.route('/')
 def index():
@@ -148,11 +152,22 @@ def login():
   return redirect(url_for('account'))
   
 
-@app.route('/dossier_sante')
+@app.route('/dossier_sante', methods=['GET', 'POST'])
 def mds():
   if current_user is None:
     return redirect(url_for('login'))
-  return render_template('dossier_sante.html')
+  if request.method == 'POST':
+    if 'document' not in request.files:
+      return redirect(request.url)
+    file = request.files['document']
+    if file.filename == '':
+      return redirect(request.url)
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+    return redirect(url_for('dossier_sante'))
+  
+  documents = os.listdir(app.config['UPLOAD_FOLDER'])
+  print(documents)
+  return render_template('dossier_sante.html', documents=documents)
 
 @app.route('/account')
 def account():

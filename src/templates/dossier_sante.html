@@ -2,4 +2,21 @@
 
 {% block content %}
 <h1>Mon Dossier Santé</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    <label for="document">Télécharger un document de santé :</label>
+    <input type="file" name="document" id="document" required>
+    <button type="submit">Télécharger</button>
+</form>
+
+<h2>Documents téléchargés :</h2>
+<ul>
+    {% for document in documents %}
+        <li class="no-bullet">
+            <a href="{{ url_for('static', filename='uploads/'+document) }}">
+            <img class="doc-preview" src="{{ url_for('static', filename='uploads/'+document) }}">
+        </a>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
