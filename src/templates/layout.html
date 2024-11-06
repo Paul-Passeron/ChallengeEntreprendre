@@ -38,10 +38,38 @@
         {% endif %}
       </div>
       <nav class="nav-bar">
-        <a href="{{ url_for('index') }}">Accueil</a>
-        <a href="{{ url_for('mds') }}">Mon Dossier Santé</a>
-        <a href="{{url_for('rappels')}}">Mes Rappels</a>
-        <a href="{{url_for('assistant')}}">Mon Conseiller</a>
+        <a href="{{ url_for('index') }}">
+          <div class="nav-content">
+            <img class="navimg"
+              src="{{url_for('static', filename='img/house.png')}}"
+              alt="Accueil">
+            Accueil
+          </div>
+        </a>
+        <a href="{{ url_for('mds') }}">
+          <div class="nav-content">
+            <img class="navimg"
+              src="{{url_for('static', filename='img/plus.png')}}"
+              alt="Mon Dossier Sante">
+            Mon Dossier Santé
+          </div>
+        </a>
+        <a href="{{ url_for('rappels') }}">
+          <div class="nav-content">
+            <img class="navimg"
+              src="{{url_for('static', filename='img/bell.png')}}"
+              alt="Mes Rappels">
+            Mes Rappels
+          </div>
+        </a>
+        <a href="{{ url_for('assistant') }}">
+          <div class="nav-content">
+            <img class="navimg"
+              src="{{url_for('static', filename='img/assistant.png')}}"
+              alt="Mon Conseiller">
+            Mon Conseiller
+          </div>
+        </a>
       </nav>
     </header>
     {% block bandeau %}

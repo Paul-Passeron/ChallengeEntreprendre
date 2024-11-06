@@ -194,12 +194,14 @@ form button:hover {
 
 .nav-bar a {
     align-self: center;
+    align-items: center;
     color: white;
     padding: 15px 20px;
     font-size: 1.5em;
     font-weight: 700;
     text-decoration: none;
     text-align: center;
+    display: flex;
 }
 
 .nav-bar a:hover {
@@ -438,6 +440,26 @@ body::after {
 .folder-button:hover {
     background-color: transparent;
     transform: scale(1.1);
+}
+
+.navbutton {
+    padding: 10px;
+    align-items: center;
+    position: relative;
+    display: inline-flex;
+}
+
+
+
+.nav-content {
+    display: flex;
+    align-items: center;
+}
+
+.navimg {
+    margin-right: 5px;
+    width: 35px;
+    height: auto;
 }
 
 /****************************************************************
