@@ -208,6 +208,18 @@ form button:hover {
     background-color: rgb(2, 170, 160);
 }
 
+.button-hour {
+    width: 50px;
+    padding: 10px;
+    background-color: rgb(2, 170, 160);
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
 .bubble-container {
     display: flex;
     justify-content: center;
