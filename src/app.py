@@ -45,14 +45,10 @@ def strToHour(hour: str) -> Hour:
   return Hour(int(hour[0]), int(hour[1]))
 
 class Rappel:
-  def __init__(self, times_a_day: int, med: str, period: int, hours: list) -> None:
-    self.times_a_day = times_a_day
+  def __init__(self, med: str, period: int, hours: list) -> None:
     self.med = med
     self.period = period
     self.hours = hours
-  
-  def getTimeADay(self) -> str:
-    return self.times_a_day
   
   def getMed(self) -> str:
     return self.med
@@ -64,24 +60,24 @@ class Rappel:
     return self.hours
   
   def nextHour(self) -> Hour:
-    if self.hours == []:
-      return None
-    else:
-      now = strToHour(datetime.now().strftime("%H:%M")).numeric()
-      sorted_hours = self.hours.sort(key=lambda x: x.numeric())
-      for hour in sorted_hours:
-        if hour.numeric() > now:
-          return hour
-      return None
+    now = strToHour(datetime.now().strftime("%H:%M")).numeric()
+    min_h = float('inf')
+    res = None
+    for hour in self.hours:
+      num = hour.numeric()
+      if num > now and min_h > num:
+        min_h = num
+        res = hour
+    return res
   
   def strInfo(self) -> str:
-    return f"Médicament à prendre {self.times_a_day} fois par jour pendant {self.period} jours"
+    return f"Médicament à prendre {len(self.hours)} fois par jour pendant {self.period} jours"
   
   def strHours(self) -> str:
-    return f"Heures de prise du médicament : {(x.__str__() for x in self.hours)}"
+    return f"Heures de prise du médicament : {str([x.__str__() for x in self.hours])}"
   
   def strNextHour(self) -> str:
-    return f"Prochaine prise du médicament : {self.nextHour.__str__()}"
+    return f"Prochaine prise du médicament : {self.nextHour().__str__()}"
 
 class User:
   
@@ -115,7 +111,7 @@ users = [
   User("clement.leveque@ensiie.eu", "Clement", "Leveque", "0000")
 ]
 
-# users[1].addRappel(Rappel("5 jours", "doliprane"))
+users[1].addRappel(Rappel("doliprane", 5, [Hour(12,50), Hour(15,30), Hour(20,20)]))
 
 def valid_login(email, passwr):
   for user in users:
@@ -123,7 +119,7 @@ def valid_login(email, passwr):
       return True
   return False
   
-current_user = None
+current_user = users[1]
 
 def getRappels():
   if current_user is None:
