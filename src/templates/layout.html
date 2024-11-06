@@ -13,8 +13,12 @@
   <body>
     <header>
       <div class="top-bar">
-        <img class="logo"
-          src="{{ url_for('static', filename='img/logo_full.png') }}">
+        <div class="logo">
+          <img class="logo"
+            src="{{ url_for('static', filename='img/logo_solo.png') }}">
+          <img class="logo-discard"
+            src="{{ url_for('static', filename='img/edica.png') }}">
+        </div>
         {% if not is_connected() %}
         <div class="buttons">
           <button

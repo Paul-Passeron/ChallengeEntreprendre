@@ -64,11 +64,12 @@ button,
     color: #fff;
     border: rgb(2, 170, 160);
     border-width: 2px;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
     text-align: center;
     text-decoration: none;
+    width: 125px;
 }
 
 button:hover,
@@ -120,6 +121,8 @@ form button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    border-radius: 10px;
+
 }
 
 form button:hover {
@@ -154,27 +157,25 @@ form button:hover {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    margin: 10px;
     background-color: white;
     color: #333;
 }
 
 .top-bar .buttons button {
+    align-content: center;
     background-color: rgb(2, 50, 77);
     color: white;
     border: none;
     padding: 8px 12px;
-    margin-right: 10px;
+    margin: 10px;
+    margin-top: 20px;
     cursor: pointer;
 }
 
 .top-bar .buttons button:hover {
-    background-color: rgb(2, 170, 160);
-}
 
-.top-bar .site-name {
-    font-size: 2em;
-    font-weight: 800;
-    margin-right: 20px;
+    background-color: rgb(2, 170, 160);
 }
 
 
@@ -192,6 +193,7 @@ form button:hover {
 }
 
 .nav-bar a {
+    align-self: center;
     color: white;
     padding: 15px 20px;
     font-size: 1.5em;
@@ -315,6 +317,12 @@ form button:hover {
 .logo {
     height: 100px;
 }
+
+
+.logo-discard {
+    height: 100px;
+}
+
 
 .background-image {
     position: fixed;
@@ -445,6 +453,7 @@ body::after {
     filter: none;
 }
 
+/* 
 @media (max-width: 768px) {
     .top-bar .site-name {
         font-size: 1.5em;
@@ -478,9 +487,11 @@ body::after {
         padding: 1rem;
         width: 90%;
     }
-}
 
-@media (max-width: 480px) {
+
+} */
+
+@media (max-width: 768px) {
 
     h1,
     h2 {
@@ -506,11 +517,6 @@ body::after {
         font-size: 1em;
     }
 
-    footer {
-        font-size: 0.9em;
-        padding: 8px;
-    }
-
     form {
         width: 90%;
         padding: 15px;
@@ -525,4 +531,59 @@ body::after {
     form button {
         font-size: 14px;
     }
+
+    .logo-discard {
+        display: none;
+    }
+
+    .page {
+        display: block;
+        margin-right: auto;
+
+    }
+
+
+    .search-container {
+        padding: 8px;
+        display: flex;
+        border: 4px solid rgb(46, 46, 46);
+        border-radius: 40px;
+        height: 40px;
+        max-width: 600px;
+    }
+
+    .search-input {
+        padding: 8px;
+        font-size: 14px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+
+    }
+
+    .search-input::placeholder {
+        color: rgba(0, 0, 0, 0.7);
+    }
+
+
+    .icon {
+        height: 20px;
+    }
+
+    .assistant-interface {
+        padding: 10px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+    .folder-button {
+        position: relative;
+        background-color: transparent;
+        color: white;
+        cursor: pointer;
+        transition: linear 0.1s;
+    }
+
 }
