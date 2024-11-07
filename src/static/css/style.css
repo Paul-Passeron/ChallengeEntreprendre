@@ -401,7 +401,6 @@ body::after {
     margin-right: auto;
     width: 50%;
     height: auto;
-    /* padding: 100px; */
 }
 
 .search-container {
@@ -557,6 +556,7 @@ form input[type="number"]:focus {
 }
 
 .data-box {
+    padding: 10px;
     font-weight: 700;
     background-color: #d1f0f0;
     border-radius: 10px;
@@ -620,44 +620,66 @@ form input[type="number"]:focus {
     margin-left: auto;
 }
 
+/* Container Styles */
 .container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 60vh;
+    overflow-y: scroll;
 }
 
-.chat-container {
-    position: absolute;
-    padding: 20px;
-    border-radius: 5%;
-    margin: 40px;
-    bottom: 50;
-    top: 50%;
-    left: 50%;
-    background-color: rgba(150, 170, 160, 0.2);
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 800px;
+.chat-bubble-container {
+    display: flex;
+    margin: 10px 0;
+}
+
+.chat-bubble-container.user {
+    display: flex;
+    margin: 10px 0;
+    background: transparent;
+    margin-left: 50%;
+    margin-right: 20%;
+}
+
+.chat-bubble-container.bot {
+    display: flex;
+    margin: 10px 0;
+    background: transparent;
+    margin-right: 50%;
+    margin-left: 20%;
 }
 
 .chat-bubble {
-    display: flex;
-    align-items: center;
-    background-color: #b3e6e5;
+    min-width: 140%;
+    padding: 10px 15px;
     border-radius: 20px;
-    padding: 10px 20px;
-    margin: 10px 0;
-    max-width: 60%;
+    position: relative;
+    line-height: 1.4;
+
 }
 
-.chat-bubble.user {
-    margin-left: auto;
+.user {
+    background-color: #4ad8dd20;
+    margin-left: 50%;
+    margin-right: 10px;
 }
 
-.chat-bubble.bot {
-    margin-right: auto;
+.bot {
+    background-color: #e1e1e120;
+    margin-right: 50%;
+    margin-left: 10px;
 }
+
+.logo-container img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
 
 .logo-container {
     display: flex;
@@ -666,14 +688,27 @@ form input[type="number"]:focus {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 0.35em solid #00a99d;
+    border: 0.4em solid #00a99d;
     margin-right: 10px;
+    flex: 1;
+    z-index: 1000;
+}
+
+.chat-bubble-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.logo-container.user {
+    margin-left: auto;
 }
 
 .logo-container img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    z-index: 999;
 }
 
 .chat-bubble p {
@@ -682,170 +717,22 @@ form input[type="number"]:focus {
     color: #333333;
 }
 
-
-
-/****************************************************************
-*                                                               *
-*                        FOR SMARTPHONES                        *
-*                                                               *
-*                                                               *
-*****************************************************************/
-
-.transparent-tabbar .tab-position .tab.active .tab-header .favicon:not(.svg),
-.theme-dark .tab-position .tab.active .tab-header .favicon:not(.svg),
-.acc-dark.color-behind-tabs-off .tab-position .tab.active .tab-header .favicon:not(.svg) {
-    filter: none;
-}
-
-/* 
-@media (max-width: 768px) {
-    .top-bar .site-name {
-        font-size: 1.5em;
-    }
-
-    .top-bar {
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .nav-bar a {
-        padding: 10px;
-        font-size: 1.2em;
-    }
-
-    .bubble,
-    .bubble-rappels {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        margin: 10px 0;
-        border-radius: 10px;
-    }
-
-    .bubble-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    main {
-        padding: 1rem;
-        width: 90%;
-    }
-
-
-} */
-
-@media (max-width: 768px) {
-
-    h1,
-    h2 {
-        font-size: 1.5em;
-    }
-
-    button,
-    .btn-link {
-        padding: 8px 15px;
-        font-size: 14px;
-    }
-
-    p {
-        font-size: 1.2em;
-    }
-
-    .top-bar .site-name {
-        font-size: 1.2em;
-    }
-
-    .nav-bar a {
-        padding: 8px;
-        font-size: 1em;
-    }
-
-    form {
-        width: 90%;
-        padding: 15px;
-    }
-
-    form input[type="text"],
-    form input[type="password"] {
-        padding: 8px;
-        font-size: 14px;
-    }
-
-    form button {
-        font-size: 14px;
-    }
-
-    .logo-discard {
-        display: none;
-    }
-
-    .page {
-        display: block;
-
-    }
-
-
-    .search-container {
-        padding: 8px;
-        display: flex;
-        border: 4px solid rgb(46, 46, 46);
-        border-radius: 40px;
-        height: 40px;
-        max-width: 600px;
-    }
-
-    .search-input {
-        padding: 8px;
-        font-size: 14px;
-        border: none;
-        outline: none;
-        background-color: transparent;
-
-    }
-
-    .search-input::placeholder {
-        color: rgba(0, 0, 0, 0.7);
-    }
-
-
-    .icon {
-        height: 20px;
-    }
-
-    .assistant-interface {
-        padding: 10px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 80%;
-    }
-
-    .folder-button {
-        position: relative;
-        background-color: transparent;
-        color: white;
-        cursor: pointer;
-        transition: linear 0.1s;
-    }
-
-}
-
 .doc-preview {
     width: 150px;
-    /* Ajustez la largeur selon vos besoins */
     height: auto;
-    /* Conserve les proportions de l'image */
     border-radius: 10px;
-    /* Bords arrondis */
     display: block;
-    /* Nécessaire pour centrer l'élément */
-    margin: 0 auto;
-    /* Centre l'image horizontalement */
+    margin: auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    /* Optionnel : ajoute une ombre légère */
 }
 
 .no-bullet {
     list-style: none;
+}
+
+#scroller {
+    padding: 0;
+    /* or adjust as necessary */
+    margin: 0;
+    /* or adjust as necessary */
 }

@@ -1,8 +1,43 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, jsonify
-import sys
+import requests
 from datetime import datetime
 import re
 import os
+
+from openai import OpenAI
+
+
+with open("initial_prompt.txt", "r") as f:
+    initial_prompt = f.read()
+
+
+API_KEY = None
+with open("apikey.txt", "r") as f:
+    API_KEY = f.read()
+
+os.environ["OPENAI_API_KEY"] = API_KEY
+
+
+client = OpenAI(
+    organization="org-O6T7cJpsdQioHt3dHsFDUrcB",
+    project="proj_EssQBcivulQjZHA3bMqxGTDf"
+)
+
+
+def ask_chatgpt(question):
+    # Prepare the payload for the API request
+    completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{
+            "role": "system",
+            "content": initial_prompt
+        }, {
+            "role": "user",
+            "content": question
+        }
+        ]
+    )
+    return completion.choices[0].message.content
 
 
 def test_email(your_pattern, email):
@@ -36,7 +71,8 @@ question = ""
 def appendQuestionAndAnswer(question):
     global messages
     messages.append(Message('user', question))
-    messages.append(Message('bot', chatbot(question)))
+    answer = ask_chatgpt(question)  # Call the ChatGPT API
+    messages.append(Message('bot', answer))  # Append the API response
 
 
 @app.route('/assistant', methods=['POST', 'GET'])

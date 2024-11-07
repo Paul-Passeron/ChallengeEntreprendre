@@ -1,34 +1,46 @@
 {% extends 'layout.html' %}
 {% block content %}
-
-</head>
-<body>
- <div class="container">
-  <div class="chat-container">
-    {% for  message in getMessages() %}
-      {% if message.isUser() %}
-        <div class="chat-bubble user">
-          <p>
-            {{ message.getContent() }}
-          </p>
-        </div>
-      {% else %}
-        <span style="display: flex;">
-          <div class="logo-container">
-          <img src="{{ url_for('static', filename='img/logo.png') }}"/>
-          </div>
-          <div class="chat-bubble bot">
-            <p>
-              {{ message.getContent() }}
-            </p>
-          </div>
-        </span>
-      {% endif %}
+<script>
+function onStart() {
+  let divElement = document.getElementById('scroller');
+  divElement.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+}
+</script>
+<div class="container">
+  <div class="chat-container" id="scroller">
+    {% for message in getMessages() %}
+    {% if message.isUser() %}
+    <div class="chat-bubble-container user">
+      <div class="chat-bubble user">
+        <p>
+          {{ message.getContent() }}
+        </p>
+      </div>
+      <div class="logo-container user">
+        <img src="{{ url_for('static', filename='img/account.png') }}" />
+      </div>
+    </div>
+    {% else %}
+    <div class="chat-bubble-container bot">
+      <div class="logo-container bot">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" />
+      </div>
+      <div class="chat-bubble bot">
+        <p>
+          {{ message.getContent() }}
+        </p>
+      </div>
+    </div>
+    {% endif %}
     {% endfor %}
+    <br>
   </div>
+  <script>
+    setTimeout(onStart, 200); // Adjust the delay as necessary
+  </script>
+</div>
 
- </div>
- <div class="assistant-interface">
+<div class="assistant-interface">
   <div class="search-container">
     <img class="icon"
       src="{{ url_for('static', filename='img/loupe.png')}}">
@@ -44,10 +56,9 @@
     <button class="search-button"><img class="icon"
         src="{{ url_for('static', filename='img/mic.png')}}"></button>
   </div>
-
 </div>
 
- <script>
+<script>
   document.getElementById('question-input').addEventListener('keypress', function(event) {
   if (event.key === 'Enter') {
     event.preventDefault();
@@ -63,7 +74,11 @@
     .then(data => {
       console.log(data);
       this.value = '';
+      if(data.message === 'first'){
         window.location.href = "{{ url_for('discussion') }}"
+      } else {
+        location.reload()
+      }
     })
     .catch(error => {
       console.error('Error:', error);
@@ -71,6 +86,5 @@
   }
 });
 </script>
-
 
 {% endblock %}
