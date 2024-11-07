@@ -54,8 +54,8 @@ def getMedicalInfos():
     global current_user
     if current_user is None:
         return None
-    res = ""
-
+    res = f"L'utilisateur s'appelle {current_user.getPrintedName()}.\n"
+    res += f"Il est actuellement {datetime.now().strftime("%Hh%M")}"
     res += "L'utilisateur a les rappels suivant pour différents médicaments:\n"
     for rappel in getRappels():
         res += "- " + rappel.getMed() + "\n"
@@ -224,6 +224,8 @@ users = [
 
 users[1].addRappel(
     Rappel("Doliprane", 5, [Hour(12, 50), Hour(15, 30), Hour(20, 20)]))
+users[1].addRappel(
+    Rappel("Ondansetron", 3, [Hour(9, 00), Hour(15, 00), Hour(21, 00)]))
 
 current_user = users[1]
 
