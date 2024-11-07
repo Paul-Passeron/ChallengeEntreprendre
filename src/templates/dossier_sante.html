@@ -2,23 +2,76 @@
 
 {% block content %}
 <h1>Mon Dossier Santé</h1>
+<div class="container-sante">
+    <div class="documents-section">
+        <form method="POST" enctype="multipart/form-data">
+            <label for="document">Télécharger un document de santé :</label>
+            <input type="file" name="document" id="document" required>
+            <button type="submit">Télécharger</button>
+        </form>
 
-<form method="POST" enctype="multipart/form-data">
-    <label for="document">Télécharger un document de santé :</label>
-    <input type="file" name="document" id="document" required>
-    <button type="submit">Télécharger</button>
-</form>
+        <h2>Ordonnances téléchargées :</h2>
+        <ul>
+            {% for document in ordonnances %}
+            <li class="no-bullet">
+                <a target="_blank" rel="noopener noreferrer"
+                    href="{{ url_for('static', filename='uploads/ordonnances/'+document) }}">
+                    <img class="doc-preview"
+                        src="{{ url_for('static', filename='uploads/ordonnances/'+document) }}">
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 
-<h2>Documents téléchargés :</h2>
-<ul>
-    {% for document in documents %}
-    <li class="no-bullet">
-        <a target="_blank" rel="noopener noreferrer"
-            href="{{ url_for('static', filename='uploads/'+document) }}">
-            <img class="doc-preview"
-                src="{{ url_for('static', filename='uploads/'+document) }}">
-        </a>
-    </li>
-    {% endfor %}
-</ul>
+    <div class="documents-section">
+        <form method="POST" enctype="multipart/form-data">
+            <label for="document">Télécharger un document de santé :</label>
+            <input type="file" name="document" id="document" required>
+            <button type="submit">Télécharger</button>
+        </form>
+
+        <h2>Prises de sang téléchargées :</h2>
+        <ul>
+            {% for document in documents %}
+            <li class="no-bullet">
+                <a target="_blank" rel="noopener noreferrer"
+                    href="{{ url_for('static', filename='uploads/documents/'+document) }}">
+                    <img class="doc-preview"
+                        src="{{ url_for('static', filename='uploads/documents/'+document) }}">
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="card-section">
+        <h2>Mes cartes</h2>
+        <div class="card">
+            <div class="card-content">
+                <div class="issue-date">
+                    émise le 01/12/2017
+                </div>
+                <div class="first-name">
+                    {{ getFirstName().upper() }}
+                </div>
+                <div class="name">
+                    {{ getName().upper() }}
+                </div>
+                <div class="number">
+                    {{ getCarteVitale() if getCarteVitale() else '' }}
+                </div>
+                <div class="photo">
+                    <img alt="Photo of {{ getPrintedName() }}" height="120"
+                        src="{{ url_for('static', filename='img/account.png') }}"
+                        width="100" />
+                </div>
+                <div class="vertical-text">
+                    802500000201234567890
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

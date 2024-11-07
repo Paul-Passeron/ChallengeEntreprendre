@@ -55,7 +55,8 @@ def email_validator(email):
 app = Flask(__name__)
 
 # Assurez-vous que cela est bien défini
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
+app.config['UPLOAD_FOLDER'] = 'static/uploads/documents'
+app.config['ORDO_FOLDER'] = 'static/uploads/ordonnances'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limite de 16 Mo
 app.secret_key = 'secret_key'
 
@@ -287,8 +288,8 @@ def dossier_sante():
         return redirect(url_for('dossier_sante'))
 
     documents = os.listdir(app.config['UPLOAD_FOLDER'])
-    print(documents)
-    return render_template('dossier_sante.html', documents=documents)
+    ordonnances = os.listdir(app.config['ORDO_FOLDER'])
+    return render_template('dossier_sante.html', documents=documents, ordonnances=ordonnances)
 
 
 @app.route('/account')
@@ -330,7 +331,7 @@ def add_rappel():
 @app.route('/data')
 def data():
     if current_user is None:
-        return redirect(url_for(login))
+        return redirect(url_for('login'))
     return render_template('data.html')
 
 

@@ -13,7 +13,7 @@
   <body>
     <header>
       <div class="top-bar">
-        <div class="logo">
+        <div style="display: block;">
           <img class="logo"
             src="{{ url_for('static', filename='img/logo_solo.png') }}">
           <img class="logo-discard"
@@ -22,10 +22,9 @@
         {% if not is_connected() %}
         <div class="buttons">
           <button
-            onclick="window.location.href = '{{ url_for('login') }}';">Se
-            connecter</button>
+            onclick="window.location.href = '{{ url_for('login') }}';">CONNEXION</button>
           <button
-            onclick="window.location.href = '{{ url_for('signup') }}';">S'inscrire</button>
+            onclick="window.location.href = '{{ url_for('signup') }}';">INSCRIPTION</button>
         </div>
         {% else %}
         <div class="user-name"><a href="{{ url_for('account') }}">{{
@@ -33,8 +32,7 @@
             }}</a></div>
         <div class="buttons">
           <button
-            onclick="window.location.href = '{{ url_for('disconnect') }}';">Se
-            déconnecter</button>
+            onclick="window.location.href = '{{ url_for('disconnect') }}';">DECONNEXION</button>
         </div>
         {% endif %}
       </div>
