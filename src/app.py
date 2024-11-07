@@ -24,22 +24,6 @@ client = OpenAI(
 )
 
 
-def ask_chatgpt(question):
-    # Prepare the payload for the API request
-    completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[{
-            "role": "system",
-            "content": initial_prompt
-        }, {
-            "role": "user",
-            "content": question
-        }
-        ]
-    )
-    return completion.choices[0].message.content
-
-
 def test_email(your_pattern, email):
     pattern = re.compile(your_pattern)
     return re.match(pattern, email)
@@ -66,7 +50,34 @@ def index():
     return render_template('index.html')
 
 
-question = ""
+def getMedicalInfos():
+    global current_user
+    if current_user is None:
+        return None
+    res = ""
+
+    res += "L'utilisateur a les rappels suivant pour différents médicaments:\n"
+    for rappel in getRappels():
+        res += "- " + rappel.getMed() + "\n"
+        res += "\t" + rappel.str() + "\n"
+
+    return res
+
+
+def ask_chatgpt(question):
+    global messages
+    prompt = {"role": "system", "content": initial_prompt}
+    med_infos_prompt = {"role": "system", "content": getMedicalInfos()}
+    last_message = {"role": "user", "content": question}
+    messages_bot = [prompt, med_infos_prompt]
+    messages_bot += [{"role": "user" if message.isUser() else "assistant",
+                      "content": message.content} for message in messages]
+    messages_bot.append(last_message)
+    completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=messages_bot
+    )
+    return completion.choices[0].message.content
 
 
 def appendQuestionAndAnswer(question):
@@ -112,7 +123,15 @@ class Hour:
         return self.minute + (self.hour*60)
 
     def __str__(self) -> str:
-        return f"{self.hour}:{self.minute}"
+        hour = ""
+        minu = ""
+        if self.hour < 10:
+            hour = "0"
+        if self.minute < 10:
+            minu = "0"
+        hour += str(self.hour)
+        minu += str(self.minute)
+        return hour + ":" + minu
 
 
 def strToHour(hour: str) -> Hour:
@@ -139,11 +158,18 @@ class Rappel:
         now = strToHour(datetime.now().strftime("%H:%M")).numeric()
         min_h = float('inf')
         res = None
+        min_overall = float('inf')
+        res_overall = None
         for hour in self.hours:
             num = hour.numeric()
+            if min_overall > num:
+                min_overall = num
+                res_overall = hour
             if num > now and min_h > num:
                 min_h = num
                 res = hour
+        if res is None:
+            return res_overall
         return res
 
     def strInfo(self) -> str:
@@ -154,6 +180,9 @@ class Rappel:
 
     def strNextHour(self) -> str:
         return f"Prochaine prise du médicament : {self.nextHour().__str__()}"
+
+    def str(self) -> str:
+        return self.strInfo() + "\n" + self.strHours() + "\n" + self.strNextHour()
 
 
 class User:
@@ -195,7 +224,6 @@ users = [
 
 users[1].addRappel(
     Rappel("Doliprane", 5, [Hour(12, 50), Hour(15, 30), Hour(20, 20)]))
-users[1].addRappel(Rappel("Paracétamol", 2, [Hour(11, 15), Hour(20, 20)]))
 
 current_user = users[1]
 

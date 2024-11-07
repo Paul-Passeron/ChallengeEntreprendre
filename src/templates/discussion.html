@@ -25,7 +25,7 @@ function onStart() {
       <div class="logo-container bot">
         <img src="{{ url_for('static', filename='img/logo.png') }}" />
       </div>
-      <div class="chat-bubble bot">
+      <div class="chat-bubble bot" markdown="1">
         <p>
           {{ message.getContent() }}
         </p>

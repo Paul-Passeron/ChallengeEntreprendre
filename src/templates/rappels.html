@@ -4,19 +4,46 @@
 <h1>Rappels</h1>
 <div class="bubble-container">
     {%for rappel in getRappels()%}
-        <div class="bubble-rappels">
-            <h3>{{rappel.getMed()}}</h3>
-            <ul>
-                <li>{{rappel.strInfo()}}</li>
-                <li>{{rappel.strHours()}}</li>
-                <li>{{rappel.strNextHour()}}</li>
-            </ul>
+    <!-- <div class="bubble-rappels">
+        <h3>{{rappel.getMed()}}</h3>
+        <ul>
+            <li>{{rappel.strInfo()}}</li>
+            <li>{{rappel.strHours()}}</li>
+            <li>{{rappel.strNextHour()}}</li>
+        </ul>
+    </div> -->
+    <div class="data-box">
+        <h2> {{ rappel.getMed().upper() }} </h2>
+        <div class="data-item">
+            <span>
+                A PRENDRE PENDANT {{ rappel.period }} JOURS
+            </span>
         </div>
+        <div class="data-item">
+            <span>
+                HEURES:
+            </span>
+            {% for hour in rappel.getHours() %}
+            <div class="value-hour">
+                {{ hour.__str__()}}
+            </div>
+            {%endfor%}
+        </div>
+        <div class="data-item">
+            <span>
+                PROCHAINE PRISE:
+            </span>
+            <div class="value-hour">
+                {{ rappel.nextHour() }}
+            </div>
+        </div>
+    </div>
     {%endfor%}
 </div>
 <div class="buttons">
     <button
-      onclick="window.location.href = '{{ url_for('add_rappel') }}';">Ajouter un rappel</button>
-  </div>
+        onclick="window.location.href = '{{ url_for('add_rappel') }}';">AJOUTER
+        UN RAPPEL</button>
+</div>
 
 {% endblock %}
